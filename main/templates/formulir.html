@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir UMKM</title>
+    <style>
+        /* Atur tampilan dasar */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Bungkus keseluruhan form */
+        .form-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Judul */
+        .form-container h1 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Gaya setiap field input */
+        .form-container label {
+            color: #555555;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #333333;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Hover dan fokus pada input */
+        .form-container input[type="text"]:focus,
+        .form-container input[type="number"]:focus,
+        .form-container textarea:focus,
+        .form-container select:focus {
+            border-color: #3f51b5;
+            outline: none;
+        }
+
+        /* Tombol submit */
+        .form-container button {
+            background-color: #3f51b5;
+            color: #ffffff;
+            padding: 0.8rem;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover pada tombol */
+        .form-container button:hover {
+            background-color: #303f9f;
+        }
+
+        /* Pesan error */
+        .error {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: -0.8rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Formulir UMKM</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error">
+                            {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
