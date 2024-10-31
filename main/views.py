@@ -7,6 +7,7 @@ def show_main(request):
     }
     return render(request, 'main.html', context)
 
+#jjj
 def formulir(request):
     if request.method == 'POST':
         form = FormulirForm(request.POST)
