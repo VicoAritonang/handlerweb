@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-jlc$942-wpow&5ib@u54yb+n*d)*3n8r^5lcj-3*#mx7+ih$74
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app", "www.handlerindonesia.com"]
     
 
 # Application definition
